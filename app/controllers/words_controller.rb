@@ -15,7 +15,8 @@ class WordsController < ApplicationController
   end
 
   def suggest
-    @suggestions = Word.order(:name).where(:language => params['lang'], :name => /^#{params[:name]}/m).limit(10)
+    #@suggestions = Word.order(:name).where(:name => /^#{params[:name]}/m).limit(10)
+    @suggestions = Word.order(:name).find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
 =begin
     text = ''
     @suggestions.each { |w|
