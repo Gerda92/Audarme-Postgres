@@ -1,0 +1,27 @@
+//main search field
+input[type="text"]{
+	font-size: 22px;
+	-webkit-appearance: textfield;
+	border-radius: 3px;
+	font-weight: 300;
+	opacity: .99;
+	border: 1px solid #ddd;
+	outline: none;
+	padding : 7px 15px;
+}
+
+input.input-search{
+	font-size: 22px;
+	-webkit-appearance: textfield;
+	width: 600px;
+	padding: 17px 0 15px 50px;
+	margin-right: 10px;
+	border-radius: 3px;
+	color: #333;
+	font-weight: 300;
+	background: #fff url('images/search.png') 10px 50% no-repeat;
+	opacity: 0.99;
+	box-shadow: 2px 2px rgba(0,0,0,0.05);
+	border: none;
+	outline: none;
+}

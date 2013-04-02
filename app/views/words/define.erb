@@ -1,0 +1,52 @@
+<div class="application-area">
+	<div class="row normal-line-after">
+		<div class="large-12 align-center pad-tb-big">
+			<div class="inline">
+				<input type="text" class="input-search" placeholder="Вводите текст здесь..." data-provide="typeahead" data-items="4" data-source="[
+				&quot;Человек&quot;, &quot;Яблока&quot;,&quot;Яблоня&quot;,
+				&quot;Як&quot;, &quot;Ясень&quot;,&quot;Ярус&quot;
+				]">
+				<button class="btn btn-yellow">Искать</button>
+				<button class="btn btn-black hide">Искать</button>
+				<div class="block big-line-before">
+					<button class="btn btn-black btn-language" id="js-swap-1">Русский</button>
+					<button class="btn btn-black btn-language" id="js-swap-lan">
+						<icon class="icon">
+						→
+						</icon>
+					</button>
+					<button class="btn btn-black btn-language" id="js-swap-2">Казахский</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="align-center">
+
+				<div class="post inline-block">
+					<h4 class="align-left"><%=@word.name%></span>
+					</h4>
+					<div class="content align-left definition">
+						<%=@word.definition.html_safe%>
+					</div>
+
+					<hr class="hr-dashed">
+					<div class="large-7 columns large-offset-5">
+						<div class="share align-left">
+							<span class="bold">Опубликовать в:</span>
+							<div class="links inline">
+								<icon class="icon-social"></icon>
+								<icon class="icon-social"></icon>
+								<icon class="icon-social"></icon>
+								<icon class="icon-social"></icon>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

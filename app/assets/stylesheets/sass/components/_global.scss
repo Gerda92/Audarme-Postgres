@@ -1,0 +1,85 @@
+::selection{background:#fff8ab; color:#000}
+::-moz-selection{background:#fff8ab; color:#000}
+
+body{
+	background-image : url('images/background.png');
+	/*background: url('images/page_background.gif');*/
+	height : 100%;
+	min-height: 100%;
+	line-height: 1.4em;
+	font: 16px/1.5 "PT Sans",Arial,sans-serif;
+	min-width : 768px;
+	max-width : 1500px;
+}
+
+/*
+* Header
+*/
+header{
+	position: relative;
+	display: block;
+	margin-bottom : 60px;
+	background: white;
+	.row{
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+	a{
+		font-size : 13px;
+		display: inline-block;
+		text-decoration: none;
+		outline: none;
+		position: relative;
+		border: none;
+		padding : 8px 0px;
+		line-height: 2.0;
+		span{
+			font-weight: bold;
+			padding : 8px;
+			border-radius : 3px;
+		}
+	}
+}
+.login{
+	color: #837666;
+}
+.registration{
+	color : rgb(59, 135, 170);
+}
+
+
+/*
+* Application area
+*/
+.application-area{
+	min-height: 340px;
+}
+
+
+/*
+* Footer
+*/
+footer{
+	padding : 90px 20px 40px;
+	.wrap{
+		box-shadow: 0 2px 0 #daddde;
+		background: white;
+		width : 100%;
+		padding : 10px 20px;
+		border-radius: 5px;
+		clear: both;
+		position: relative;
+	}
+	.present{
+		font-size : 14px;
+		padding : 14px 0px;
+		.copy{
+			color : #757474;
+		}
+	}
+	.text{
+		color: #757474;
+		font-size: 14px; 
+	}
+}
+

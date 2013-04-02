@@ -1,0 +1,138 @@
+/*display style*/
+.hide{
+  display: none;
+}
+.block{
+  display: block;
+}
+.inline{
+  display: inline;
+}
+.inline-block{
+  display: inline-block;
+}
+.hidden{
+  visibility: hidden;
+}
+
+/*backgrounds*/
+.bg-white{
+  background: white;
+}
+.bg-inherit{
+  background: inherit;
+}
+
+
+/*shadows*/
+.box-shadow{
+  box-shadow: 2px 2px rgba(0,0,0,0.1);
+}
+
+/*sizes*/
+.pad-tb{
+  padding : 20px inherit;
+}
+.pad-tb-big{
+  padding : 30px inherit; 
+}
+.small-line-after{
+  margin-bottom: 5px;
+}
+.normal-line-after{
+  margin-bottom: 10px;
+}
+.big-line-after{
+  margin-bottom: 15px;
+}
+.small-line-before{
+  margin-top: 5px;
+}
+.normal-line-before{
+  margin-top: 10px;
+}
+.big-line-before{
+  margin-top: 15px;
+}
+
+/*alignes*/
+.vertical-super{
+  vertical-align: super;
+}
+.align-center{
+  text-align: center;
+}
+.align-right{
+  text-align: right;
+}
+.align-left{
+  text-align: left;
+}
+
+/*font*/
+.bold{
+  font-weight: bold;
+}
+.green{
+  color : green;
+}
+
+
+//hacks
+.clearfix{
+  &:before{
+    content: " "; 
+    display: table; 
+  }
+  &:after{
+    content: " "; 
+    display: table; 
+  }
+  &:after{
+    clear: both;
+  }
+}
+
+//other
+.hr-dashed{
+  background: url('images/divider_dashed.png') bottom left repeat-x;
+  border : none;
+  outline: none;
+  padding : 5px 0px;
+}
+
+
+
+
+/*modals*/
+.modal-back{
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(192, 192, 192, 0.28);
+}
+
+.modal{
+  position: absolute!important;
+  box-shadow: 3px 4px 11px rgba(12, 12, 12, .04);
+  border: 1px solid #D9D9D9;
+  top: 100px;
+  z-index: 199;
+  background: white;
+  padding: 15px 30px 20px 24px;
+  .close-button{
+    background-image: url('images/close.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 24px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 24px;
+    &:hover{
+      background-image: url('images/close-hover.png');
+      cursor: pointer;
+    }
+  }
+}
