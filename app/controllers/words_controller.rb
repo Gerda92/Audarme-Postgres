@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   def index
     text = ''
-    Word.all.asc(:name).limit(100).each { |w|
+    Word.all.asc(:name).limit(10).each { |w|
       text += '<h2>' + w.name + '</h2><p>' + (w.definition.nil? ? '' : w.definition) + '</p>'
 
     }

@@ -1,5 +1,8 @@
 Sozdik::Application.routes.draw do
   # get "home/index"
+
+  root :to => "words#index"
+
   match 'push' => 'home#push'
 
   match 'words/:lang/:name' => 'words#define', :as => :word_definition
