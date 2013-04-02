@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   def index
     text = ''
-    Word.all.asc(:name).limit(10).each { |w|
+    Word.order(:name).limit(10).each { |w|
       text += '<h2>' + w.name + '</h2><p>' + (w.definition.nil? ? '' : w.definition) + '</p>'
 
     }
@@ -15,7 +15,7 @@ class WordsController < ApplicationController
   end
 
   def suggest
-    @suggestions = Word.asc(:name).where(:language => params['lang'], :name => /^#{params[:name]}/m).limit(10)
+    @suggestions = Word.order(:name).where(:language => params['lang'], :name => /^#{params[:name]}/m).limit(10)
 =begin
     text = ''
     @suggestions.each { |w|
