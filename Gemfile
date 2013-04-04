@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "http://bundler-api.herokuapp.com"
 
 gem 'rails', '3.2.11'
 

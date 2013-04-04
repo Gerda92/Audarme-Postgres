@@ -114,3 +114,31 @@ modules["language-change"] = (function(){
 	}
 	_init_.call();
 });
+
+
+modules["enter-button"] = (function(){
+	var _data_ = {
+		getButton : $("#js-button-search"),
+		getInput  : $("#js-text-search")
+	}
+
+	var _init = function(){
+
+		_data_.getButton.bind("click", function(){
+			var vl = _data_.getInput.val();
+			var url = "/words/kz/" + vl;
+			$.ajax({
+				url : url,
+				type : "GET",
+				success : function(_json_){
+					alert(_json_);
+				}
+			});
+		});
+
+	}
+
+	//the queue of actions
+	_init.call();
+});
+
