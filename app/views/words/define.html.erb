@@ -1,0 +1,29 @@
+<%= render "search_form" %>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="align-center">
+			<div class="post inline-block">
+				<h4 class="align-left" id="js-word-title">
+					<%= (@word.nil? ? "" : @word.name) %>
+				</h4>
+
+				<div class="content align-left definition" id="js-word-content">
+					<%= (@word.nil? ? "" : @word.definition.html_safe) %>
+				</div>
+
+				<hr class="hr-dashed">
+				<div class="large-7 columns large-offset-5">
+					<div class="share align-left">
+						<span class="bold">Опубликовать в:</span>
+						<div class="links inline">
+							<icon class="icon-social"></icon>
+							<icon class="icon-social"></icon>
+							<icon class="icon-social"></icon>
+							<icon class="icon-social"></icon>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
