@@ -31,9 +31,6 @@ modules.collect = (function(){
 /**
 * Starting modules
 */
-modules["typehead-module"] = (function(){
-	$('.example').typeahead();
-});
 modules["modal-bg-module"] = (function(){
 	var self = window;
 	var sandbox = self.sandbox;
@@ -187,9 +184,24 @@ modules["enter-button"] = (function(){
 		$.ajax({
 			url : url,
 			success : function(_json_){
-				console.log(_json_);
+				loadResult(_json_);	
 			}
 		});
+	}
+
+	var loadResult = function(ob){
+		var object = ob || {};
+		var input = _data_.getInput;
+		//iterate all objects
+		var html = [];
+		var len = object.length;
+		for(var i = 0; i < len; i++){
+			html.push({value : object[i].name});
+		}
+		input.typeahead({
+			source : html
+		});
+		
 	}
 	//the queue of actions
 	_init.call();
