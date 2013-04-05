@@ -1,12 +1,16 @@
 class WordsController < ApplicationController
   def index
-    redirect_to '/words/ru/a'
+    render :define
   end
 
   def define
     @word = Word.where(:language => params['lang'], :name => params['name']).first
-    if (@word.nil? && !request.xhr?)
-      render :define
+    if (@word.nil?)
+      if (request.xhr?)
+        render :json => 'Error'
+      else
+        render :define
+      end
       return
     end
     other_lang = params['lang'] == 'kz'? 'ru' : 'kz'
@@ -18,7 +22,7 @@ class WordsController < ApplicationController
   end
 
   def suggest
-    @suggestions = Word.order(:name).find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
+    @suggestions = Word.order(:name).where(:language => params['lang']).find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
 
     render :json => @suggestions
   end
