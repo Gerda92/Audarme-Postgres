@@ -194,14 +194,18 @@ modules["enter-button"] = (function(){
 		var input = _data_.getInput;
 		//iterate all objects
 		var html = [];
+		var another_container = "";
 		var len = object.length;
 		for(var i = 0; i < len; i++){
-			html.push({value : object[i].name});
+			html.push(object[i].name);
+			another_container += '&quot;' + object[i].name + '&quot;,'
 		}
-		input.typeahead({
-			source : html
-		});
-		
+		another_container = another_container.substring(0, another_container.length - 1);
+		//input.typeahead();
+		//input.attr("data-source", "[" + another_container + "]");
+		input.autocomplete({
+	      source: html
+	    });
 	}
 	//the queue of actions
 	_init.call();
