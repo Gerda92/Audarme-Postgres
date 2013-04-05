@@ -2,7 +2,7 @@ var modules = {}
 var sandbox = {}
 var global = {
 	lan : ["ru", "kz"],
-	current : 0
+	current : 1
 }
 
 /**
@@ -194,15 +194,10 @@ modules["enter-button"] = (function(){
 		var input = _data_.getInput;
 		//iterate all objects
 		var html = [];
-		var another_container = "";
 		var len = object.length;
 		for(var i = 0; i < len; i++){
 			html.push(object[i].name);
-			another_container += '&quot;' + object[i].name + '&quot;,'
 		}
-		another_container = another_container.substring(0, another_container.length - 1);
-		//input.typeahead();
-		//input.attr("data-source", "[" + another_container + "]");
 		input.autocomplete({
 	      source: html
 	    });
