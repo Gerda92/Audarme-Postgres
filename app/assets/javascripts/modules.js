@@ -2,7 +2,7 @@ var modules = {}
 var sandbox = {}
 var global = {
 	lan : ["ru", "kz"],
-	current : 1
+	current : 0
 }
 
 /**
