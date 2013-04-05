@@ -159,7 +159,7 @@ modules["enter-button"] = (function(){
 
 	var action = function(){
 		var vl = _data_.getInput.val();
-		var url = "/words/" + global.lan[global.current] + "/" + vl;
+		var url = "words/" + global.lan[global.current] + "/" + vl;
 		$.ajax({
 			url : url,
 			type : "GET",
@@ -179,7 +179,7 @@ modules["enter-button"] = (function(){
 	}
 	var load_suggest = function(){
 		var vl = _data_.getInput.val();
-		var url = "../suggest/" + global.lan[global.current] + "/" + vl;
+		var url = "words/suggest/" + global.lan[global.current] + "/" + vl;
 		//loading some ajax
 		$.ajax({
 			url : url,
@@ -196,14 +196,12 @@ modules["enter-button"] = (function(){
 		var html = [];
 		var len = object.length;
 		for(var i = 0; i < len; i++){
-			html.push({value : object[i].name});
+			html.push(object[i].name);
 		}
-		input.typeahead({
-			source : html
-		});
-		
+		input.autocomplete({
+	      source: html
+	    });
 	}
 	//the queue of actions
 	_init.call();
 });
-
