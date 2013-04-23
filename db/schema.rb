@@ -11,14 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402114651) do
+ActiveRecord::Schema.define(:version => 20130423191615) do
 
   create_table "words", :force => true do |t|
     t.string   "name"
+    t.string   "indexed_name"
     t.text     "definition"
     t.string   "language"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
+
+  add_index "words", ["indexed_name"], :name => "index_words_on_indexed_name"
 
 end

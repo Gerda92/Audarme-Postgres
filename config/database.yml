@@ -1,15 +1,14 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: mydb_as_postgres
-  pool: 5
-  username: Sozdik
-  password: Sozdik1992
+  database: audarme
+  username: postgres
+  password: RedHawks2013
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: mydb_as_postgres
+  database: audarme
   pool: 5
-  username: Sozdik
-  password: Sozdik1992
+  username: postgres
+  password: RedHawks2013

@@ -4,7 +4,10 @@ Sozdik::Application.routes.draw do
   root :to => "words#index"
 
   match 'words/:lang/:name' => 'words#define', :as => :word_definition
+  match 'api/define/:lang/:name' => 'api#define'
+  match 'api/words' => 'api#words'
   match 'words/suggest/:lang/:name' => 'words#suggest'
+  match 'api/index/:word' => 'api#indexed_name'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
