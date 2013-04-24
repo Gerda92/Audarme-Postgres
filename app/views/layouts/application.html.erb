@@ -2,79 +2,27 @@
 <html>
 <head>
   <title>Audarim</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag    "merge"%>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "jquery" %>
-  <%= javascript_include_tag "typehead" %>
+  <%= javascript_include_tag "bootstrap-typeahead" %>
   <%= javascript_include_tag "modules" %>
   <%= javascript_include_tag "app" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container">
-		<header class="hide">
-			<div class="adv">
-				<div class="row">
-					<div class="align-center adv-font">
-						Advertisement
-					</div>
-				</div>		
-			</div>
-			<div class="row">
-				<div class="large-4 columns">
-					&nbsp;
-				</div>
-				<div class="menu align-right large-8 columns">
-					<a href="#" class="login modal-open" data-modal="modal">
-						<span>
-							<icon class="icon">
-								🔑
-							</icon>
-							Войти
-						</span>
-					</a>
-					<a href="#" class="registration modal-open" data-modal="modal">
-						<span>
-							<icon class="icon">
-								
-							</icon>
-							Регистрация
-						</span>
-					</a>
-				</div>
-			</div>
-		</header>
-	
-		<div style="padding:50px 0px;"></div>
-		<div class="application-area">
-			<%= yield %>	
-		</div>
-		<footer>
-			<div class="row">
-				<div class="wrap">
-					<div class="large-4 columns">
-						<div class="present">
-							<span class="block bold">
-								Audarim.kz 
-							</span>
-							<span class="copy">
-								Copyright © 2013. All rights reserved.
-							</span>
-						</div>
-					</div>
-					<div class="large-4 columns">
-						<div class="present">
-							<span class="text">
-								У нас есть:
-								55860 статей, 106968 примеров.
-							</span>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</footer>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+	<div class="container" style="padding-top:60px;">
+		<%= yield %>
 	</div>
 </body>
 </html>

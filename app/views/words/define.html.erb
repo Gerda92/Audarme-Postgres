@@ -1,29 +1,22 @@
 <%= render "search_form" %>
 <div class="row">
-	<div class="large-12 columns">
-		<div class="align-center">
-			<div class="post inline-block">
-				<h4 class="align-left" id="js-word-title">
-					<%= (@word.nil? ? "" : @word.name) %>
-				</h4>
+	<div class="span2" id="js-nearby-words">
+		<h5>Nearby Words</h5>
+		<ul id="js-nearby-words" class="nav nav-pills nav-stacked">
+			<li><a href="">word upper</a></li>
+			<li class="active"><a href="">Current word</a></li>
+			<li><a href="">word lower</a></li>
+		</ul>
+	</div>
+	<div class="span5">
 
-				<div class="content align-left definition" id="js-word-content">
-					<%= (@word.nil? ? "" : @word.definition.html_safe) %>
-				</div>
+		<h4 id="js-word-title">
+			<%= (@word.nil? ? "" : @word.name) %>
+		</h4>
 
-				<hr class="hr-dashed">
-				<div class="large-7 columns large-offset-5">
-					<div class="share align-left">
-						<span class="bold">Опубликовать в:</span>
-						<div class="links inline">
-							<icon class="icon-social"></icon>
-							<icon class="icon-social"></icon>
-							<icon class="icon-social"></icon>
-							<icon class="icon-social"></icon>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="definition" id="js-word-content">
+			<%= (@word.nil? ? "" : @word.definition.html_safe) %>
 		</div>
+
 	</div>
 </div>

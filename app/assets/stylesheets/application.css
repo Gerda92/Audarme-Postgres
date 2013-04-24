@@ -12,6 +12,7 @@
  *= require_tree .
  */
 
-.definition > a {
-	color:black!important;
-}
+ .logo {
+ 	margin: 0;
+ 	line-height:30px;
+ }
