@@ -28,4 +28,36 @@ class WordsController < ApplicationController
     render :json => @suggestions
   end
 
+  def add_word_kz
+    @word = Word.new
+    @word.name = params['name']
+    @word.language = 'kz'
+    @word.definition = params['definition']
+    @check = Word.where(name: @word.name).all.to_a
+    if (@check.count == 0)
+      @word.save
+    end
+  end
+
+  def add_word_ru
+    @word = Word.new
+    @word.name = params['name']
+    @word.language = 'ru'
+    @word.definition = params['definition']
+    @check = Word.where(name: @word.name).all.to_a
+    if (@check.count == 0)
+      @word.save
+    end
+  end
+
+  def word_exist
+    @name = params['name']
+    @word = Word.where(name: @name).all.to_a
+    if (@word.count == 0)
+      return false
+    else 
+      return true
+    end
+  end
+
 end

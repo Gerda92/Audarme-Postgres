@@ -3,6 +3,8 @@ Sozdik::Application.routes.draw do
 
   root :to => "words#index"
 
+  match 'words/word_exist' => 'words#word_exist', via: :post
+  match 'words/add_word' => 'words#create', via: :post
   match 'words/:lang/:name' => 'words#define', :as => :word_definition
   match 'api/define/:lang/:name' => 'api#define'
   match 'api/words' => 'api#words'
