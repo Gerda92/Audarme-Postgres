@@ -3,6 +3,8 @@ Sozdik::Application.routes.draw do
 
   root :to => "words#index"
 
+  match 'translate/ru/kk/:word' => 'translate#ru', via: :get
+  match 'translate/kk/ru/:word' => 'translate#kz', via: :get
   match 'words/word_exist' => 'words#word_exist', via: :post
   match 'words/add_word' => 'words#create', via: :post
   match 'words/:lang/:name' => 'words#define', :as => :word_definition

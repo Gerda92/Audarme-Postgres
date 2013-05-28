@@ -22,8 +22,7 @@ class WordsController < ApplicationController
   end
 
   def suggest
-    @suggestions = Word.order(:indexed_name).where(:language => params['lang'])
-      .find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
+    @suggestions = Word.order(:indexed_name).where(:language => params['lang']).find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
 
     render :json => @suggestions
   end

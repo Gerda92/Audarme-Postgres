@@ -1,0 +1,22 @@
+<%= render "search_form" %>
+<div class="row">
+	<div class="span2" id="js-nearby-words">
+		<h5>Nearby Words</h5>
+		<ul id="js-nearby-words" class="nav nav-pills nav-stacked">
+			<li><a href="">word upper</a></li>
+			<li class="active"><a href="">Current word</a></li>
+			<li><a href="">word lower</a></li>
+		</ul>
+	</div>
+	<div class="span5">
+
+		<h4 id="js-word-title">
+			<%= (@word.nil? ? "" : @word.name) %>
+		</h4>
+
+		<div class="definition" id="js-word-content">
+			<%= (@word.nil? ? "" : @word.definition.html_safe) %>
+		</div>
+
+	</div>
+</div>

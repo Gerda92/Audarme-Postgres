@@ -42,7 +42,7 @@ while(s = read_word)
 	definition = get_def(s)
 	definition = fix_anchors(definition[0][0])
 	counter += 1
-	postData = Net::HTTP.post_form(URI.parse('http://localhost:3000/words/add_word_kz'), 
+	postData = Net::HTTP.post_form(URI.parse('http://91.201.215.20:3000/words/add_word_kz'), 
 	                               {'name'=>title[0][0], 'definition'=>definition})
 	if (counter.modulo(100)==0)
 		puts counter
