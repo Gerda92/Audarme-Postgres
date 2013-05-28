@@ -20,6 +20,13 @@ class WordsController < ApplicationController
       format.json { render :json => @word }
     end
   end
+
+  def try_api
+    respond_to do |format|
+      format.html {}
+      format.json {}
+    end
+  end
 	
   def define_ru
 	@word = Word.where(:language => params['lang'], :name => params['name']).first
@@ -31,7 +38,7 @@ class WordsController < ApplicationController
 		end
 		return
 	end
-    other_lang = params['lang'] == 'kz'?'ru' : 'kz'
+    other_lang = params['lang'] == 'kz'? 'ru' : 'kz'
     respond_to do |format|
 	format.html {render :define}
         format.json {render:json => @word}

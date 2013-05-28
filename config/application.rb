@@ -61,5 +61,17 @@ module Sozdik
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
   end
+
+    class ApplicationController < ActionController::Base
+      protect_from_forgery
+      after_filter :set_access_control_headers
+
+      def set_access_control_headers
+        response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, X-Requested-With"
+      end
+    end
+
 end
