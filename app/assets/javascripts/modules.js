@@ -95,6 +95,8 @@ modules["suggestions"] = (function(){
 			var template = "<div id=" + id + "><h5>" + message + "</h5></div>"
 			if(!sourceLen || inputLen < 2)
 				$("#js-word-title").html( template );
+			else if(sourceLen) 
+				$("#" + id).remove();
 		});
 	}
 
