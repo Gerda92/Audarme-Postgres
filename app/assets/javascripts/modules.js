@@ -48,22 +48,53 @@ modules["language-change"] = (function(){
 modules["suggestions"] = (function(){
 
 	var _init = function(){
-		$('#js-text-search').typeahead({
-			source: function (typeahead, query) {
-				$.ajax({
-					url : "words/suggest/" + global.lan[global.current] + "/" + query,
-					async: false,
-					success: function (data) {
-						var source = [];
-						for(var i = 0; i < data.length; i++){
-							source.push(data[i].name);
-						}
-				    	typeahead.process(source);					
+
+		var input = $("#js-text-search");
+		input.bind("keyup", function()
+		{
+			var val = $(this).val();
+			var query = val.toString();
+			var those = $(this);
+
+			$.ajax({
+				url : "words/suggest/" + global.lan[global.current] + "/" + query,
+				success: function (data) {
+					var source = [];
+					for(var i = 0; i < data.length; i++){
+						source.push(data[i].name);
 					}
+					load( source , those);					
+				},
+				beforeSend : function(){
+					var id = "template-id-1231oi45";
+					$(id).remove();
+				}
+			});
+		});
+ 
+		var load = (function(source, object)
+		{	
+			load_placeholder( source.length, object.val().length );
+			if(source.length > 0){
+
+				object.autocomplete({
+					source : source
 				});
 
-		    },
-			matcher: function (item) { return true; }
+			}else{ console.log("The length of source if 0"); }
+		});
+
+		var load_placeholder = (function(sourceLen, inputLen)
+		{
+			var message = "";
+			if(inputLen < 2)
+				message += "Длина запроса должна быть больше 1. ";
+			if(!sourceLen)
+				message += "На ваш запрос ничего не найдено!"
+			var id = "template-id-1231oi45";
+			var template = "<div id=" + id + "><h5>" + message + "</h5></div>"
+			if(!sourceLen || inputLen < 2)
+				$("#js-word-title").html( template );
 		});
 	}
 
@@ -93,7 +124,7 @@ modules["load-word"] = (function(){
 		_data_.getInput.bind("keydown", function(ev){
 			if(ev.keyCode == 13){
 				//pressed enter
-				action();
+				//action();
 			}
 		});
 	}
