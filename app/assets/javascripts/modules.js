@@ -133,6 +133,7 @@ modules["load-word"] = (function(){
 
 	var action = function(){
 		var vl = _data_.getInput.val();
+		console.log ( vl )
 		var url = "words/" + global.lan[global.current] + "/" + vl;
 		$.ajax({
 			url : url,
@@ -144,7 +145,6 @@ modules["load-word"] = (function(){
 				var content = $("#js-word-content");
 				title.html(vl);
 				content.html(object.definition);
-				//document.location.replace(url);
 			},
 			error : function(){
 				var content = $("#js-word-content");

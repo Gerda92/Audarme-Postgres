@@ -15,8 +15,13 @@ class WordsController < ApplicationController
     end
     other_lang = params['lang'] == 'kz'? 'ru' : 'kz'
     #@word.definition.gsub!(/(<a[^>]*href=")[^"]*("[^>]*>)(.*)(<\/a>)/ix, '\1/words/'+ other_lang +'/\3\2\3\4')
+   
+    response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers['Access-Control-Allow-Origin'] = '*' 
+
     respond_to do |format|
-      format.html { render :define }
+      format.html { render :json => @word }
       format.json { render :json => @word }
     end
   end
