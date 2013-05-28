@@ -1,10 +1,15 @@
-class WordsController < ApplicationController
+class TranslateController < ApplicationController
   def index
     render :define
   end
 
-  def ru word
-    @word = Word.where(:language => 'kz', :name => word).first
+  def define
+    if (params[:lang] == 'ru')
+	lang = 'ru'
+    else
+	lang = 'kz'
+    end
+    @word = Word.where(:language => lang, :name => params[:name]).first
     if (@word.nil?)
       if (request.xhr?)
         render :json => 'Error'
@@ -20,7 +25,7 @@ class WordsController < ApplicationController
   end
 
   def kz
-    @word = Word.where(:language => 'ru', :name => word).first
+    @word = Word.where(:language => 'kz', :name => word).first
     if (@word.nil?)
       if (request.xhr?)
         render :json => 'Error'

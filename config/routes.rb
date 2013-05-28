@@ -1,10 +1,14 @@
 Sozdik::Application.routes.draw do
-  # get "home/index"
+   get "home/index"
 
   root :to => "words#index"
 
-  match 'translate/ru/kk/:word' => 'translate#ru', via: :get
-  match 'translate/kk/ru/:word' => 'translate#kz', via: :get
+  match 'translate/:lang/:lang2/:name' => 'translate#define' 
+  match 'translate/kk/ru/:name' => 'translate#kz', :as => :word_definition
+  match 'translate/ru/kk/words/suggest/:lang/:name' => 'words#suggest'
+  match 'translate/kk/ru/words/suggest/:lang/:name' => 'words#suggest'
+  match 'translate/kk/ru/words/:lang/:name' => 'words#define', :as => :word_definition
+  match 'translate/ru/kk/words/:lang/:name' => 'words#define', :as => :word_definition
   match 'words/word_exist' => 'words#word_exist', via: :post
   match 'words/add_word' => 'words#create', via: :post
   match 'words/:lang/:name' => 'words#define', :as => :word_definition

@@ -20,6 +20,23 @@ class WordsController < ApplicationController
       format.json { render :json => @word }
     end
   end
+	
+  def define_ru
+	@word = Word.where(:language => params['lang'], :name => params['name']).first
+   	if (@word.nil?)
+		if (request.nil?)
+			render :json => 'Error'
+		else
+			render :define
+		end
+		return
+	end
+    other_lang = params['lang'] == 'kz'?'ru' : 'kz'
+    respond_to do |format|
+	format.html {render :define}
+        format.json {render:json => @word}
+    end
+  end
 
   def suggest
     @suggestions = Word.order(:indexed_name).where(:language => params['lang']).find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
