@@ -121,6 +121,7 @@ modules["load-word"] = (function(){
 
 		_data_.getButton.bind("click", function(){
 			action();
+			//load_nearby();
 		});
 
 		_data_.getInput.bind("keydown", function(ev){
@@ -151,6 +152,28 @@ modules["load-word"] = (function(){
 				content.html("Ваше слово не найдено!");
 			}
 		});
+	}
+
+	var load_nearby = function(){
+		var vl = _data_.getInput.val();
+		var url = "words/nearby/" + global.lan[global.current] + "/" + vl;
+		$.ajax({
+			url : url,
+			type : "GET",
+			dataType: "JSON",
+			success : function(data){
+				var ul = $("#js-nearby-words"); ul.html("");
+				for(var i = 0; i < data.length; i++){
+					var li = $('<li><a href="">' + data[i].name + "</a></li>")
+						.appendTo(ul);
+				if (data[i].name == vl)
+					li.attr('class', 'active');
+				}		
+			},
+			error : function(){
+				$("#js-word-title").html("");
+			}
+		});		
 	}
 
 	//the queue of actions
