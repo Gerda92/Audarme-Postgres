@@ -17,6 +17,8 @@ Sozdik::Application.routes.draw do
   match 'words/suggest/:lang/:name' => 'words#suggest'
   match 'api/index/:word' => 'api#indexed_name'
 
+  match 'words/nearby/:lang/:name' => 'words#nearby'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

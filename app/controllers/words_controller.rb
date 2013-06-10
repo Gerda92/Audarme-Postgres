@@ -51,10 +51,21 @@ class WordsController < ApplicationController
   end
 
   def suggest
-    @suggestions = Word.order(:indexed_name).where(:language => params['lang']).find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
+    @suggestions = Word.order(:indexed_name)
+      .where(:language => params['lang'])
+      .find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
 
     render :json => @suggestions
   end
+
+  def nearby
+    @word = Word.where(:language => params['lang'], :name => params['name']).first
+    @lower = Word.where(:language => params['lang']).order(:indexed_name)
+      .find(:all, :conditions => ['indexed_name > ? ', @word.indexed_name],:limit => 4)
+    @upper = Word.where(:language => params['lang']).find(:all, :order => 'indexed_name desc',
+      :conditions => ['indexed_name <= ? ', @word.indexed_name],:limit => 4).reverse
+    render :json => @upper + @lower
+  end 
 
   def add_word_kz
     @word = Word.new
