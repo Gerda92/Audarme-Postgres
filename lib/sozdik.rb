@@ -32,6 +32,23 @@ class Sozdik
 		end
 
 	end
+	
+	def self.push_words lang
+		File.open("dictionary_raw/" + lang + "words_new.html", "r:UTF-8").each do |word|
+			if (Word.where(language: lang, name: word.chomp!).all.count > 0)
+				next
+			end
+			definition = get_word(word)
+			if (definition == false)
+				next
+			end
+			word = Word.new
+			word.name = word
+			word.language = lang
+			word.definition = definition
+		    word.save
+		end
+	end
 
 end
 

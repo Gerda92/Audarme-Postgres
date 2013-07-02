@@ -21,11 +21,13 @@ group :assets do
 end
 
 gem 'execjs'
-gem 'therubyracer'
+# gem 'therubyracer'
 
 gem 'jquery-rails'
 
 gem "twitter-bootstrap-rails"
+
+gem 'unicode'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

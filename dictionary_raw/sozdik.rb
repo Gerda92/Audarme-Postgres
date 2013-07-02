@@ -1,5 +1,7 @@
 require "net/http"
 require "uri"
+require "unicode"
+require_relative "parser.rb"
 
 class Sozdik
 
@@ -33,7 +35,38 @@ class Sozdik
 
 	end
 
+	def self.get_absent_words lang
+		defs = File.open(lang + "defs.html", "r:UTF-8").lines
+		missed = File.open(lang + "missed2.txt", "w:UTF-8")
+		next_def = prev_def = get_title(defs.next)
+		
+		File.open(lang + "missed.txt", "r:UTF-8").each do |word|
+			#puts next_def
+			if !word.chomp!.nil? && (Parser.indexed_name(word)
+				.< Parser.indexed_name(next_def))
+				if (word != prev_def)
+					missed.write(word+"\n")
+				end
+			else
+				prev_def = next_def
+				next_def = get_title(defs.next)
+			end
+		end
+
+	end
+
+	def self.get_title(s)
+		title = s.scan(%r{<h2>(.*)</h2>}m)
+		if title[0].nil?
+			nil
+		else
+			title[0][0]
+		end
+	end
+
+
 end
 
-puts Sozdik.get_word gets.chomp.encode("utf-8")
+#puts Sozdik.get_word gets.chomp.encode("utf-8")
 
+Sozdik.get_absent_words 'kz'
