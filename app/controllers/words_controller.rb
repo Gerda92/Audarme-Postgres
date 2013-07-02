@@ -15,10 +15,10 @@ class WordsController < ApplicationController
     end
     other_lang = params['lang'] == 'kz'? 'ru' : 'kz'
     #@word.definition.gsub!(/(<a[^>]*href=")[^"]*("[^>]*>)(.*)(<\/a>)/ix, '\1/words/'+ other_lang +'/\3\2\3\4')
-   
+
     response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE"
     response.headers["Access-Control-Allow-Headers"] = "*"
-    response.headers['Access-Control-Allow-Origin'] = '*' 
+    response.headers['Access-Control-Allow-Origin'] = '*'
 
     respond_to do |format|
       format.html { render :json => @word }
@@ -32,7 +32,7 @@ class WordsController < ApplicationController
       format.json {}
     end
   end
-	
+
   def define_ru
 	@word = Word.where(:language => params['lang'], :name => params['name']).first
    	if (@word.nil?)
@@ -65,7 +65,7 @@ class WordsController < ApplicationController
     @upper = Word.where(:language => params['lang']).find(:all, :order => 'indexed_name desc',
       :conditions => ['indexed_name <= ? ', @word.indexed_name],:limit => 4).reverse
     render :json => @upper + @lower
-  end 
+  end
 
   def add_word_kz
     @word = Word.new
@@ -94,9 +94,13 @@ class WordsController < ApplicationController
     @word = Word.where(name: @name).all.to_a
     if (@word.count == 0)
       return false
-    else 
+    else
       return true
     end
+  end
+
+  def lemattize word
+    Lemmatizer.lemmatize word
   end
 
 end
