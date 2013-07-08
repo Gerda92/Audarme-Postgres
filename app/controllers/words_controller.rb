@@ -51,6 +51,11 @@ class WordsController < ApplicationController
   end
 
   def suggest
+    
+    response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers['Access-Control-Allow-Origin'] = '*'
+
     @suggestions = Word.order(:indexed_name)
       .where(:language => params['lang'])
       .find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)

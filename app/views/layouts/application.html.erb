@@ -2,27 +2,43 @@
 <html>
 <head>
   <title>Audarim</title>
+  <%= stylesheet_link_tag "bootstrap_and_overrides", :media => "all" %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "bootstrap-typeahead" %>
-  <%= javascript_include_tag "modules" %>
-  <%= javascript_include_tag "app" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+	<div class="container">
+    <div class="row">
+      <header>
+        <ul class="nav nav-pills">
+          <li>
+            <a href="/" class="logo">
+              Audarme.kz
+            </a>
+          </li>
+          <li class="fl-right"><a href="#">Примеры</a></li>
+          <li class="fl-right"><a href="#">API</a></li>
+          <li class="fl-right"><a href="">О сервисе</a></li>
+          <li class="active fl-right">
+            <a href="#">Главная страница</a>
+          </li>
         </ul>
+      </header>
+    </div>
+    <div class="row none" id="js-keyboard">
+      <div class="span10 offset1 pad content">
       </div>
     </div>
-  </div>
-	<div class="container" style="padding-top:60px;">
 		<%= yield %>
+    <div class="row adv" style="height:80px">
+      
+    </div>
+    <footer>
+      <h6>
+        &copy; Online translation by Audarme.kz 2013
+      </h6>
+    </footer>
 	</div>
 </body>
 </html>

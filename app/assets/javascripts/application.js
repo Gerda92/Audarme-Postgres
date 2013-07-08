@@ -12,3 +12,5 @@
 //
 
 //= require jquery
+//= require app
+//= require modules
