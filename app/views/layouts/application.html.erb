@@ -8,32 +8,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container">
-    <div class="row">
-      <header>
-        <ul class="nav nav-pills">
-          <li>
-            <a href="/" class="logo">
-              Audarme.kz
-            </a>
-          </li>
-          <li class="fl-right"><a href="#">Примеры</a></li>
-          <li class="fl-right"><a href="#">API</a></li>
-          <li class="fl-right"><a href="">О сервисе</a></li>
-          <li class="active fl-right">
-            <a href="#">Главная страница</a>
-          </li>
+
+  <!--header-->
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../">Audarme</a>
+        <ul class="nav">
+          <li><a href="">Главная</a></li>
+          <li><a href="">API</a></li>
+          <li><a href="">О нас</a></li>
+          <li><a href="">Примеры</a></li>
         </ul>
-      </header>
+      </div>
     </div>
+  </div>
+  <!--endheader-->
+
+	<div class="container application">
     <div class="row none" id="js-keyboard">
       <div class="span10 offset1 pad content">
       </div>
     </div>
 		<%= yield %>
-    <div class="row adv" style="height:80px">
-      
-    </div>
     <footer>
       <h6>
         &copy; Online translation by Audarme.kz 2013
