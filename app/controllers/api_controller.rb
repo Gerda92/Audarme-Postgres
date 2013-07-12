@@ -1,4 +1,8 @@
 class ApiController < ApplicationController
+	
+	def index
+	end
+
 	def define
 		@word = Word.where(:language => params['lang'], :name => params['name']).first
 		#raise Word.where(:language => 'ru').order(:name).limit(100).inspect

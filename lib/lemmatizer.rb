@@ -4,7 +4,7 @@ class Lemmatizer
 
 	def self.var_init
 		zh = ''
-		File.open("kzzh.txt", "r:UTF-8").each do |s|
+		File.open("/home/audarme/projects/Audarme-Postgres/lib/kzzh.txt", "r:UTF-8").each do |s|
 			#puts s
 			next if s.strip!.nil? || s.empty?
 			if  s.match(/(.*):/) && zh = s.match(/(.*):/).captures[0]

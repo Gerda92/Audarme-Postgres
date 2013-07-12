@@ -108,4 +108,13 @@ class WordsController < ApplicationController
     Lemmatizer.lemmatize word
   end
 
+  def examples
+  end
+
+  def about_us
+  end
+
+  def contact_us
+  end
+
 end

@@ -1,4 +1,19 @@
+random_h = 0
+changeLanguage = ->
+	SITE_ENT.get_language_container().find("input")[++random_h%2].click()
+
+#loading placeholder
+showLoading = ->
+	SITE_ENT.get_spinner().show()
+	SITE_ENT.get_text_container().hide()
+
+#showing content
+showContent = ->
+	SITE_ENT.get_spinner().hide()
+	SITE_ENT.get_text_container().show()
+
 query = (val)->
+	console.log val
 	#blank?
 	return false if val.length == 0
 
@@ -10,25 +25,38 @@ query = (val)->
 		success : (data)->
 			complete JSON.parse(data)
 		error : (data)->
-			console.log data
+			showContent()
+			SITE_ENT.get_text_container().html(
+				"<h5 class='well bold'>К сожалению по вашему запросу ничего не найдено!</h5>"
+			)
 		beforeSend : ->
-			console.log "Translate with query #{val}"
+			console.log "Translate with query '#{val}'"
+			showLoading()
 	}
 
 #when query success and done
 complete = (data) ->
+	showContent()
 	SITE_ENT.get_text_container().html(
 		"<p class=text-inf >#{data.definition}</p>"
 	)
+	SITE_ENT.get_text_container().find('a').on 'click', ->
+		vl = $(this).text()
+		#change language of app
+		changeLanguage()
+		SITE_ENT.get_search_input().val( vl ).focus()
+		SITE_ENT.get_search_button().click()
+		return false
 
 
 autocomplete = (val) ->
 	#blank?
 	return false if val.length == 0
 
+	val = val.toLowerCase()
+
 	#set background scene
-	SITE_ENT.get_text_container().hide()
-	SITE_ENT.get_spinner().show()
+	showLoading()
 
 	#search autocomplete
 	language = window.CURRENT_LANGUAGE
@@ -36,28 +64,61 @@ autocomplete = (val) ->
 		word : val
 		url : "http://audarme.kz/words/suggest/#{language}/#{val}"
 		success : (data)->
-			if window.CURRENT_WORD is @word
+			if window.CURRENT_WORD.toLowerCase() is @word
 				autocomplete_l data
 			else if window.CURRENT_WORD.length is 0
-				SITE_ENT.get_text_container().html('<h6>Введите что-нибудь в строку поиска!</h6>').show()
-				SITE_ENT.get_spinner().hide()
+				SITE_ENT.get_text_container().html("<h5 class='well bold'>Введите что-нибудь в строку поиска!</h5>").show()
+				SITE_ENT.get_spinner().hide()				
+		error : (data)->
+			SITE_ENT.get_text_container().html(
+				"<h5 class='well bold'>Что-то пошло не так! Попробуйте снова.</h5>"
+			)
+
 	}
 
 autocomplete_l = (data)->
+	setValue = (vl)->
+		SITE_ENT.get_search_input().val( vl ).focus()
+
+	# console.log data
 	list = ""
 	if data.length > 0
 		data.forEach (a, index) ->
-			list += "<p class=js-suggest><span>#{index+1}. </span><span class='text'>#{a.name}</span></p>"
+			definition = "<span class='short-title'>#{a.definition.substring(0, 80)}</span>"
+			list += "<p class=js-suggest><span class='text'>#{a.name}</span><span class='icon-arrow-right js-suggest-icon'></span></p>"
 	else
-		list += "<h6>К сожалению по вашему запросу ничего не найдено!<h6>"
+		list += "<h5 class='well bold'>К сожалению по вашему запросу ничего не найдено!<h5"
 	container = SITE_ENT.get_text_container().html(list)
 
 	$(".js-suggest").on 'click', ->
 		value = $(this).children('.text').html().toLowerCase()
 		SITE_ENT.get_search_input().val( value ).focus()
+		SITE_ENT.get_search_button().click()
 
-	SITE_ENT.get_spinner().hide()
-	SITE_ENT.get_text_container().show()
+	collection  = $(".js-suggest")
+	collPointer = 0
+	collChosed  = null
+
+	$(document).on 'keydown', (ev)->
+		up = down = false
+		up = true if ev.which is 38
+		down = true if ev.which is 40
+		if collection.length > 0
+			collChosed.removeClass('js-suggest-hover') if collChosed
+			#new
+			if down
+				collPointer++
+				collChosed  = $(collection[collPointer%collection.length]).addClass('js-suggest-hover')
+				setValue( collChosed.text() )
+				return false
+			if up
+				collPointer--
+				collPointer = collection.length - 1 if collPointer < 0
+				collChosed = $(collection[collPointer%collection.length]).addClass('js-suggest-hover')
+				setValue( collChosed.text() )
+				return false
+
+	showContent()
 
 
 
@@ -91,12 +152,22 @@ new Module {
 	autoload : true
 	init : ->
 		window.CURRENT_LANGUAGE = ''
+		#saving chooosed point
+		choosed = null
+		
 		#set default value
 		SITE_ENT.get_language_container().find("input").each ->
 			window.CURRENT_LANGUAGE = $(this).val() if $(this).attr("checked")
+			$(this).parent().addClass 'bold' if $(this).attr("checked")
+			choosed = $(this).parent() if $(this).attr('checked')
+
 		#update on click
 		SITE_ENT.get_language_container().find("input").on 'click', ->
 			window.CURRENT_LANGUAGE = $(this).val()
+			if choosed
+				choosed.removeClass 'bold'
+			choosed = $(this).parent()
+			choosed.addClass 'bold'
 }
 
 new Module {
@@ -160,4 +231,11 @@ new Module {
 			else
 				window.AUTOCOMPLETE_STATUS = true
 				$(this).attr('checked', 'checked')
+}
+
+new Module {
+	name : "Set minimal height to page via javascript"
+	autoload : true
+	init : ->
+		$(".page").css("min-height", $(document).height()*2/3 - $('footer').height())
 }

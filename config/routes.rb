@@ -15,7 +15,11 @@ Sozdik::Application.routes.draw do
   match 'words/:lang/:name' => 'words#define', :as => :word_definition
   match 'api/define/:lang/:name' => 'api#define'
   match 'api/words' => 'api#words'
+  match 'api' => 'api#index'
   match 'words/suggest/:lang/:name' => 'words#suggest'
+  match 'contact_us' => 'words#contact_us'
+  match 'about_us' => 'words#about_us'
+  match 'examples' => 'words#examples'
   match 'api/index/:word' => 'api#indexed_name'
 
   match 'words/nearby/:lang/:name' => 'words#nearby'
