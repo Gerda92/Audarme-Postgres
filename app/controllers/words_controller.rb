@@ -59,7 +59,15 @@ class WordsController < ApplicationController
     @suggestions = Word.order(:indexed_name)
       .where(:language => params['lang'])
       .find(:all, :conditions => ['name LIKE ? ', ''+params[:name]+'%'],:limit => 10)
-
+=begin
+	if params['lang'] == 'kz' && @suggestions.empty?
+		Lemmatizer.lemmatize(params[:name]).each do |lemma|
+			if Word.where(language: lang, name: lemma).all.count > 0
+				@suggestions << lemma
+			end
+		end
+	end
+=end	  
     render :json => @suggestions
   end
 
@@ -104,8 +112,8 @@ class WordsController < ApplicationController
     end
   end
 
-  def lemattize word
-    Lemmatizer.lemmatize word
+  def lem
+    raise Lemmatizer.lemmatize(params[:word]).inspect
   end
 
   def examples
