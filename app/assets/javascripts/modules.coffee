@@ -68,7 +68,7 @@ autocomplete = (val) ->
 				autocomplete_l data
 			else if window.CURRENT_WORD.length is 0
 				SITE_ENT.get_text_container().html("<h5 class='well bold'>Введите что-нибудь в строку поиска!</h5>").show()
-				SITE_ENT.get_spinner().hide()				
+				SITE_ENT.get_spinner().hide()
 		error : (data)->
 			SITE_ENT.get_text_container().html(
 				"<h5 class='well bold'>Что-то пошло не так! Попробуйте снова.</h5>"
@@ -129,7 +129,7 @@ new Module {
 		window.CURRENT_WORD = ""
 		SITE_ENT.get_search_button().on 'click', ->
 			inp = SITE_ENT.get_search_input()
-			query inp.val() 
+			query inp.val()
 		SITE_ENT.get_search_input().on 'keyup', (ev)->
 			key = ev.keyCode || 187
 			#global
@@ -143,8 +143,8 @@ new Module {
 				len = $(this).val().length
 				testing = $(this).val().substring( len - 1, len)
 				if ((key >= 48 and key <= 90) or (key is 187)) and (not /[a-z|A-Z]/.test( testing )) or (key is 8)
-					text = $(this).val().toLowerCase() 
-					autocomplete(text) if text.length > 0 
+					text = $(this).val().toLowerCase()
+					autocomplete(text) if text.length > 0
 }
 
 new Module {
@@ -154,7 +154,7 @@ new Module {
 		window.CURRENT_LANGUAGE = ''
 		#saving chooosed point
 		choosed = null
-		
+
 		#set default value
 		SITE_ENT.get_language_container().find("input").each ->
 			window.CURRENT_LANGUAGE = $(this).val() if $(this).attr("checked")
@@ -191,7 +191,7 @@ new Module {
 			if container.attr('data-display') == 'off'
 				container.fadeOut('fast').attr('data-display', 'on')
 			else
-				container.fadeIn('fast').attr('data-display', 'off')	
+				container.fadeIn('fast').attr('data-display', 'off')
 }
 
 new Module {
@@ -239,3 +239,14 @@ new Module {
 	init : ->
 		$(".page").css("min-height", $(document).height()*2/3 - $('footer').height())
 }
+
+
+# new Module {
+# 	name : "upload images via javascript"
+# 	autoload : true
+# 	init : ->
+# 		url = 'http://' + location.host + $("#js-image-placeholder-0").attr("data-src")
+# 		hash = Math.floor(Math.random() * 100011)
+# 		$("#js-image-placeholder-0").parent().html("<img  src=#{url} id=#{hash} />")
+# 		document.getElementById(hash).setAttribute('style', '123123')
+# }

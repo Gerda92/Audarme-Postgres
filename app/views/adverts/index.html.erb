@@ -1,0 +1,27 @@
+<h1>Listing adverts</h1>
+
+<div class="row">
+    <div class="span2">Компания</div>
+    <div class="span2">Ссылка</div>
+    <div class="span2">Место расположения</div>
+    <div class="span1">Счетчик</div>
+    <div class="span3">Изображение</div>
+    <div class="span2"></div>
+</div>
+
+<% @adverts.each do |advert|%>
+<div class="row">
+    <div class="span2"><%= advert.company %></div>
+    <div class="span2"><%= advert.anchor%></div>
+    <div class="span2"><%= advert.humanized_place %></div>
+    <div class="span1"><%= advert.counter %></div>
+    <div class="span3"><img src="http://audarme.kz<%= advert.addsloader%>" class="admin-img"/></div>
+    <div class="span2"><%= link_to 'Show', advert %><br/>
+        <%= link_to 'Edit', edit_advert_path(advert) %><br/>
+    <a href="http://audarme.kz/adverts/destroy/<%= advert.id%>">Delete</a></div>
+</div>
+<% end %>
+
+<br />
+
+<%= link_to 'New Advert', new_advert_path %>

@@ -1,10 +1,25 @@
 class WordsController < ApplicationController
   def index
+    @adverts = Advert.get_adverts
+    @show = true
     render :define
   end
 
   def define
     @word = Word.where(:language => params['lang'], :name => params['name']).first
+    if (@word.nil?)
+      if params['lang'] == 'kz'
+        @variants = Lemmatizer.lemmatize params['name']
+      end
+      if @variants
+        @variants.each do |v|
+          @w = Word.where(:language => params['lang'], :name => v).first
+          if @w
+            @word = @w
+          end
+        end
+      end
+    end
     if (@word.nil?)
       if (request.xhr?)
         render :json => 'Error'
@@ -51,7 +66,7 @@ class WordsController < ApplicationController
   end
 
   def suggest
-    
+
     response.headers["Access-Control-Allow-Methods"] = "GET, PUT, POST, DELETE"
     response.headers["Access-Control-Allow-Headers"] = "*"
     response.headers['Access-Control-Allow-Origin'] = '*'

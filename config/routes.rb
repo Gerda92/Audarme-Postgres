@@ -1,4 +1,7 @@
 Sozdik::Application.routes.draw do
+  resources :adverts
+
+
    get "home/index"
 
   root :to => "words#index"
@@ -21,6 +24,7 @@ Sozdik::Application.routes.draw do
   match 'about_us' => 'words#about_us'
   match 'examples' => 'words#examples'
   match 'api/index/:word' => 'api#indexed_name'
+  match 'adverts/destroy/:id' => 'adverts#destroy'
 
   match 'words/nearby/:lang/:name' => 'words#nearby'
 

@@ -24,6 +24,11 @@
     </div>
   </div>
   <!--endheader-->
+  <% if @show %>
+    <div class="adv-container" style="display:hide;">
+      <%= show_image(@adverts[1].addsloader.url) %>
+    </div>
+  <% end %>
 
 	<div class="container application">
     <div class="row none" id="js-keyboard">
@@ -32,6 +37,13 @@
     </div>
 		<%= yield %>
     <footer>
+      <div class="row">
+        <% if @show %>
+          <div class="footer-adv">
+            <img src=<%=show_image(@adverts[3].addsloader.url)%> >
+          </div>
+        <% end %>
+      </div>
       <div class="footer-menu">
         <ul>
           <li><a href="http://audarme.kz">Главная</a></li>

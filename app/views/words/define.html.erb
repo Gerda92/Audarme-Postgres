@@ -21,9 +21,6 @@
 		</div>
 	</div>
 	<div class="span3">
-		<div class="adv">
-		</div>
-		<br>
 		<div class="settings">
 			<h5>
 				<span class="icon-cog"></span>
@@ -39,7 +36,7 @@
 				  С казахского на русский
 				</label>
 			</div>
-			
+
 			<label class="checkbox">
 			  <input type="checkbox" value="" id="js-enable-keyboard">
 			 	Показать клавиатуру
@@ -52,8 +49,13 @@
 			<div class="key-help">
 				Используйте кнопки &uarr; и &darr; для навигации
 			</div>
-			
-
 		</div>
+
+		<% if @show %>
+			<div class="adv-sidebar">
+				<img src=<%= show_image(@adverts[2].addsloader.url) %> >
+			</div>
+		<% end %>
+
 	</div>
 </div>
