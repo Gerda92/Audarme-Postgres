@@ -4,7 +4,7 @@ class Lemmatizer
 
 	def self.var_init
 		zh = ''
-		File.open("/home/audarme/projects/Audarme-Postgres/lib/kzzh.txt", "r:UTF-8").each do |s|
+		File.open("dictionary_raw/kzzh.txt", "r:UTF-8").each do |s|
 			#puts s
 			next if s.strip!.nil? || s.empty?
 			if  s.match(/(.*):/) && zh = s.match(/(.*):/).captures[0]
@@ -22,15 +22,17 @@ class Lemmatizer
 		lemmas = [word]
 		var_init if @@zhalgaular.empty?
 		['septik zh.', 'taueldik zh.', 'koptik zh.'].each do |type|
+			new_lemmas = []
 			for i in 0..lemmas.size-1
 				w = lemmas[i]
 				@@zhalgaular[type].each do |instance|
 					if (w =~ /#{instance}$/)
-						lemmas << w.gsub(/#{instance}$/, '')
+						new_lemmas << w.gsub(/#{instance}$/, '')
 					end
 				end
 			end
-		end	
+			lemmas = lemmas + new_lemmas
+		end
 		lemmas
 	end
 

@@ -14,7 +14,7 @@ Sozdik::Application.routes.draw do
   match 'translate/ru/kk/words/:lang/:name' => 'words#define', :as => :word_definition
   match 'words/word_exist' => 'words#word_exist', via: :post
   match 'words/add_word' => 'words#create', via: :post
-  match 'words/lemmatize' => 'words#lemmatize', via: :post
+  match 'words/lemmatize/:word' => 'words#lem'
   match 'words/:lang/:name' => 'words#define', :as => :word_definition
   match 'api/define/:lang/:name' => 'api#define'
   match 'api/words' => 'api#words'
