@@ -1,0 +1,3 @@
+[submodule "app/assets"]
+	path = app/assets
+	url = git@github.com:farhatmihalko/audarme-assets.git
