@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   def index
-    @adverts = Advert.get_adverts
-    @show = true
+    # @adverts = Advert.get_adverts
+    @show = false
     render :define
   end
 

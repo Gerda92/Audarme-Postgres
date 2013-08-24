@@ -1,9 +1,38 @@
-<div class="row">
-	<div class="input-append">
-	  <input class="span7 search-input" id="js-search-inp" type="text" placeholder="Например: планета">
-	  <button class="btn search-button btn-primary" id="js-search-btn" type="button">
-	  	<i class="icon-search icon-white"></i>&nbsp;
-	  	Поиск
-	  </button>
-	</div>
+<div id="js-keyboard" class="text-center">
+	<button class="btn">ә</button>
+	<button class="btn">і</button>
+	<button class="btn">ң</button>
+	<button class="btn">ғ</button>
+	<button class="btn">ү</button>
+	<br/>
+	<button class="btn">ұ</button>
+	<button class="btn">қ</button>
+	<button class="btn">ө</button>
+	<button class="btn">һ</button>
 </div>
+<div id="settings" class="text-center">
+	<div id="js-language-select">
+		<a id="lang1">русский</a>
+		<a id="language-swap-icon"></a>
+		<a id="lang2">казахский</a>
+	</div>
+	<div class="pull-right"><a id="js-keyboard-button"></a></div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="input-append" id="search-form">
+  <input class="search-input" id="js-search-inp" type="text" placeholder="Например: планета">
+  <button title="search" class="btn btn-primary search-button" id="js-search-button">
+          <i class="icon-search icon-white"></i></button>
+</div>
+
+<div id="suggestions">
+	<ul class="nav nav-list">
+		<li><a>планета</a></li>
+		<li class="active"><a>жираф</a></li>
+		<li><a>Кумар</a></li>
+		<li><a>Фархат</a></li>
+	</ul>
+</div>
+<div id="js-loading" class="none"></div>
